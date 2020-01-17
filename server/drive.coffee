@@ -11,9 +11,9 @@ KEY = Meteor.settings.key or try
   Assets.getBinary 'drive-key.pem.crypt'
 catch error
   undefined
-if KEY? and Meteor.settings.password?
+if KEY? and Meteor.settings.key_password?
   # Decrypt the JWT authentication key synchronously at startup
-  KEY = decrypt KEY, Meteor.settings.password
+  KEY = decrypt KEY, Meteor.settings.key_password
 EMAIL = Meteor.settings.email or '571639156428@developer.gserviceaccount.com'
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
