@@ -170,6 +170,9 @@ Template.header_loginmute.helpers
 
 Template.header_loginmute.onRendered ->
   # tool tips
+  $(this.findAll('.bb-connect-status[title]')).tooltip
+    placement: 'left'
+    container: '.bb-buttonbar'
   $(this.findAll('.bb-buttonbar *[title]')).tooltip
     placement: 'bottom'
     container: '.bb-buttonbar'
