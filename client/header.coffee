@@ -382,6 +382,7 @@ Template.header_breadcrumbs.helpers
     if Session.equals 'type', 'puzzles'
       model.Puzzles.findOne Session.get 'id'
     else null
+  wiki: -> settings.TEAM_WIKI_URL
   picker: -> settings.PICKER_CLIENT_ID? and settings.PICKER_APP_ID? and settings.PICKER_DEVELOPER_KEY?
   drive: -> switch Session.get 'type'
     when 'general'
@@ -410,6 +411,7 @@ Template.header_breadcrumbs.events
 Template.header_breadcrumbs.onRendered ->
   # tool tips
   $(this.findAll('a.bb-drive-link[title]')).tooltip placement: 'bottom'
+  $(this.findAll('a.bb-wiki[title]')).tooltip placement: 'bottom'
 
 uploadToDriveFolder = share.uploadToDriveFolder = (folder, callback) ->
   google = window?.google

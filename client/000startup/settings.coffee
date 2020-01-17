@@ -25,6 +25,8 @@ settings.CHAT_LIMIT_INCREMENT = server.chatLimitIncrement ? 100
 
 settings.DISABLE_TEAM_PASSWORD = server.disableTeamPassword ? false
 
+settings.TEAM_WIKI_URL = server.teamWikiUrl ? null
+
 # -- Performance settings --
 
 # make fewer people subscribe to ringhunters chat.
