@@ -4,10 +4,15 @@ ensureData = (cb) ->
     name: 'round'
     puzzles: null
   , (err, r) ->
-    cb(err) if err?
+    if err? then cb(err) else
     Meteor.call 'newPuzzle',
       name: 'puzzle'
-      round: r
+      round: r._id
+    , (err, p) ->
+      if err? then cb(err) else
+      cb null,
+        puzzle: p
+        round: r
 
 # different load testing tasks
 tasks = Object.create(null)
@@ -93,13 +98,11 @@ addPuzzles = (data) ->
 # -- tasks --
 
 addTask "blackboard", ->
-  login()
   ensureData (error, data) ->
     addPuzzles(data) unless error?
   { page: 'blackboard' }
 
 addTask "generalChat", ->
-  login()
   saySomething 'general/0'
   { page: 'chat', type: 'general', id: '0' }
 
@@ -109,7 +112,6 @@ addTask "puzzleChat", (cb) ->
   # roundgroup named "roundgroup"
   ensureData (error, data) ->
     return if error?
-    login()
     o = { page: 'chat', type: 'puzzles', id: data.puzzle._id }
     saySomething "#{o.type}/#{o.id}"
     cb o
@@ -120,7 +122,6 @@ addTask "puzzlePage", (cb) ->
   # roundgroup named "roundgroup"
   ensureData (error, data) ->
     return if error?
-    login()
     # pick a puzzle
     o = Random.choice [
       #{ type: 'roundgroups', id: data.roundgroup._id }, # no chat for rgs!
