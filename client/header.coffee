@@ -477,6 +477,7 @@ Template.header_nickmodal_contents.onCreated ->
       container.append(gravatar)
 nickInput = new Tracker.Dependency
 Template.header_nickmodal_contents.helpers
+  team_password: -> !settings.DISABLE_TEAM_PASSWORD
   disabled: ->
     nickInput.depend()
     Meteor.loggingIn() or not $('#nickInput').val()

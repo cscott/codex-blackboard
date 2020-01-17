@@ -23,6 +23,8 @@ settings.INITIAL_CHAT_LIMIT = server.initialChatLimit ? 200
 
 settings.CHAT_LIMIT_INCREMENT = server.chatLimitIncrement ? 100
 
+settings.DISABLE_TEAM_PASSWORD = server.disableTeamPassword ? false
+
 # -- Performance settings --
 
 # make fewer people subscribe to ringhunters chat.

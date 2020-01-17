@@ -306,6 +306,7 @@
   </div>
   <div class="modal-body">
     <form id="nickPick" class="form-horizontal">
+{{#if team_password}}
       <div class="control-group" id="passwordInputGroup">
         <label class="control-label" for="passwordInput">Team Password</label>
         <div class="controls">
@@ -315,6 +316,9 @@
           <span class="help-inline">(same for everyone)</span>
         </div>
       </div>
+{{else}}
+      <input type="hidden" id="passwordInput" value="not used" />
+{{/if}}
       <div class="control-group" id="nickInputGroup">
         <label class="control-label" for="nickInput">Nick</label>
         <div class="controls">
